@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부산 갈맷길 - 건강한 걷기 문화</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: wave 15s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .intro {
+            background: linear-gradient(to bottom, #f7fafc, #ffffff);
+        }
+
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #718096;
+        }
+
+        .courses {
+            background: #f7fafc;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-info {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .info-badge {
+            background: #edf2f7;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .course-description {
+            color: #718096;
+            margin-bottom: 1rem;
+        }
+
+        .health-benefits {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-text {
+            opacity: 0.9;
+        }
+
+        .cta-section {
+            background: linear-gradient(to right, #f7fafc, #edf2f7);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            border: 2px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .intro-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html"></a>
+    <a href="https://1318park.github.io/-/">갈맷길로이동</a>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>부산 갈맷길과 함께하는<br>건강한 하루</h1>
+            <p>268km의 아름다운 해안길을 걸으며 몸과 마음의 건강을 되찾으세요</p>
+            <a href="#courses" class="cta-button">코스 둘러보기</a>
+        </div>
+    </section>
+
+    <section class="section intro">
+        <div class="intro-content">
+            <div class="intro-text">
+                <h2>갈맷길이란?</h2>
+                <p>부산 갈맷길은 오륙도에서 시작해 낙동강 하구까지 이어지는 부산의 대표적인 해안 트레킹 코스입니다.</p>
+                <p>'갈맷'은 부산 사투리로 갈매기를 뜻하며, 갈매기처럼 자유롭게 바다를 따라 걷는다는 의미를 담고 있습니다.</p>
+                <p>푸른 바다와 함께하는 걷기는 단순한 운동을 넘어 마음의 치유와 건강 증진을 선사합니다.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">개 코스</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">268</div>
+                    <div class="stat-label">km</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">만보/일</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="section courses">
+        <h2 class="section-title">추천 인기 코스</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-image">🌊</div>
+                <div class="course-content">
+                    <h3 class="course-title">1코스 - 오륙도</h3>
+                    <div class="course-info">
+                        <span class="info-badge">17km</span>
+                        <span class="info-badge">중급</span>
+                        <span class="info-badge">5-6시간</span>
+                    </div>
+                    <p class="course-description">오륙도 해맞이공원에서 광안리까지, 부산의 상징적인 해안 절경을 만날 수 있는 코스입니다.</p>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">🏖️</div>
+                <div class="course-content">
+                    <h3 class="course-title">2코스 - 해운대</h3>
+                    <div class="course-info">
+                        <span class="info-badge">12km</span>
+                        <span class="info-badge">초급</span>
+                        <span class="info-badge">3-4시간</span>
+                    </div>
+                    <p class="course-description">광안리에서 해운대, 송정까지 이어지는 부산의 대표 해변을 따라 걷는 편안한 코스입니다.</p>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">🌅</div>
+                <div class="course-content">
+                    <h3 class="course-title">4코스 - 청사포</h3>
+                    <div class="course-info">
+                        <span class="info-badge">16km</span>
+                        <span class="info-badge">중급</span>
+                        <span class="info-badge">5시간</span>
+                    </div>
+                    <p class="course-description">청사포 다릿돌 전망대와 해안 절벽을 따라 걷는 드라마틱한 풍경의 코스입니다.</p>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">🌳</div>
+                <div class="course-content">
+                    <h3 class="course-title">5코스 - 송정</h3>
+                    <div class="course-info">
+                        <span class="info-badge">14km</span>
+                        <span class="info-badge">초-중급</span>
+                        <span class="info-badge">4-5시간</span>
+                    </div>
+                    <p class="course-description">송정해수욕장에서 시작해 죽성성당과 기장 해안을 따라 이어지는 아름다운 코스입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section health-benefits">
+        <h2 class="section-title">걷기가 주는 건강 효과</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">💪</div>
+                <h3 class="benefit-title">심혈관 건강</h3>
+                <p class="benefit-text">규칙적인 걷기로 심장 질환 위험 30% 감소</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🧠</div>
+                <h3 class="benefit-title">정신 건강</h3>
+                <p class="benefit-text">스트레스 해소와 우울감 개선, 행복 호르몬 증가</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🔥</div>
+                <h3 class="benefit-title">체중 관리</h3>
+                <p class="benefit-text">시간당 200-300 칼로리 소모로 건강한 체중 유지</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🦴</div>
+                <h3 class="benefit-title">관절 건강</h3>
+                <p class="benefit-text">무릎과 관절에 무리 없는 저충격 운동</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section">
+        <h2>오늘부터 갈맷길과 함께하세요</h2>
+        <p>건강한 걷기 문화로 더 나은 삶을 시작하세요</p>
+        <div class="cta-buttons">
+            <a href="#" class="btn-primary">코스 지도 다운로드</a>
+            <a href="#" class="btn-secondary">걷기 앱 설치</a>
+        </div>
+    </section>
+</body>
